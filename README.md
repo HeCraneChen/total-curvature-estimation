@@ -10,8 +10,7 @@ A universal total curvature estimation method that works for both triangle meshe
 - [libigl](http://libigl.github.io/libigl/) for 3D visualizations and rendering
 - [Polyscope](http://polyscope.run/) for 3D visualizations and rendering
 
-libigl is slightly more involved. We referred to the [libigl-example-project](https://github.com/HeCraneChen/libigl-example-project).
-
+We referred to the [libigl-example-project](https://github.com/HeCraneChen/libigl-example-project) to download libigl and its dependencies:
 The CMake build system will automatically download libigl and its dependencies using
 [CMake FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html),
 thus requiring no setup on your part.
