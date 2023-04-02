@@ -1,8 +1,14 @@
 # discrete total curvature
 
-A universal total curvature estimation method that works for both triangle meshes and point clouds
+A universal total curvature estimation method that works for both triangle meshes and point clouds.
 
 ## Dependencies
+
+openmp
+
+polyscope
+
+libigl and its related dependencies (slightly more involved):
 
 The only dependencies are STL, Eigen, [libigl](http://libigl.github.io/libigl/) and the dependencies
 of the `igl::opengl::glfw::Viewer` (OpenGL, glad and GLFW).
