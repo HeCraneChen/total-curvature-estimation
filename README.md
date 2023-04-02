@@ -41,6 +41,6 @@ This should find and build the dependencies and create a `example_bin` binary.
 
 From within the `build` directory just issue:
 
-    ./example
+    ./TotalCurvature
 
-A glfw app should launch displaying a 3D cube.
+A glfw app should launch displaying the point cloud of a cow, rendered with color representing total curvature of each point.
