@@ -2,6 +2,8 @@
 
 A universal total curvature estimation method that works for both triangle meshes and point clouds.
 
+## Comparison with other popular libraries
+
 ## Dependencies
 
 - STL
@@ -46,3 +48,5 @@ From within the `build` directory just issue:
     ./TotalCurvature
 
 A glfw app should launch displaying the point cloud of a cow, rendered with color representing total curvature of each point.
+
+
