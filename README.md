@@ -7,9 +7,9 @@ A universal total curvature estimation method that works for both triangle meshe
 ## Dependencies
 
 - [STL](https://www.geeksforgeeks.org/the-c-standard-template-library-stl/)
-- [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for matrix data structure
+- [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for matrix data structures
 - [openmp](http://polyscope.run/) for parallelization
-- [libigl](http://libigl.github.io/libigl/) for 3D visualizations and rendering
+- [libigl](http://libigl.github.io/libigl/) for mesh data structures and geometry processing tools
 - [Polyscope](http://polyscope.run/) for 3D visualizations and rendering
 
 We referred to the [libigl-example-project](https://github.com/HeCraneChen/libigl-example-project) to download libigl and its dependencies:
