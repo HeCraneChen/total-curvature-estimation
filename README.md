@@ -4,18 +4,14 @@ A universal total curvature estimation method that works for both triangle meshe
 
 ## Dependencies
 
-eigen
+- STL
+- [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for matrix data structure
+- [openmp](http://polyscope.run/) for parallelization
+- [libigl](http://libigl.github.io/libigl/) for 3D visualizations and rendering
+- [Polyscope](http://polyscope.run/) for 3D visualizations and rendering
 
-openmp
+libigl is slightly more involved. We referred to the [libigl-example-project](https://github.com/HeCraneChen/libigl-example-project).
 
-polyscope
-
-libigl 
-
-libigl is slightly more involved than the other libraries. We referred to the example project of libigl.
-
-The only dependencies are STL, Eigen, [libigl](http://libigl.github.io/libigl/) and the dependencies
-of the `igl::opengl::glfw::Viewer` (OpenGL, glad and GLFW).
 The CMake build system will automatically download libigl and its dependencies using
 [CMake FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html),
 thus requiring no setup on your part.
