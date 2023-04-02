@@ -1,8 +1,6 @@
-# libigl example project
+# discrete total curvature
 
-A blank project example showing how to use libigl and cmake. Feel free and
-encouraged to copy or fork this project as a way of starting a new personal
-project using libigl.
+A universal total curvature estimation method that works for both triangle meshes and point clouds
 
 ## Dependencies
 
