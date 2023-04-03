@@ -1,7 +1,7 @@
 # total curvature estimation
 
 A universal total curvature estimation method that works for both triangle meshes and point clouds. For details, see the 2023 paper by Crane Chen under the supervision of Misha Kazhdan.
-![mesh_pcd_curvature](https://user-images.githubusercontent.com/33951209/229394994-84ad3adb-d020-4e53-a87b-aec2060bcfea.png)
+![mesh_pcd_curvature](https://user-images.githubusercontent.com/33951209/229395487-efa580f7-9e28-498d-9265-af09d75f6d5c.png)
 
 ## Comparison with other popular libraries
 ![teaser_bright](https://user-images.githubusercontent.com/33951209/229387054-371fa8e9-1ef2-4552-81e3-af6927ee99dc.png)
