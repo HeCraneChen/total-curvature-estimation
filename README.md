@@ -26,6 +26,7 @@ Fetch the code with dependencies:
 
 Compile this project using the standard cmake routine:
 
+    cd total-curvature-estimation
     mkdir build
     cd build
     cmake -DFETCHCONTENT_SOURCE_DIR_LIBIGL=../libigl ..
