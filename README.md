@@ -1,4 +1,4 @@
-# discrete total curvature
+# total curvature estimation
 
 A universal total curvature estimation method that works for both triangle meshes and point clouds. For details, see the 2023 paper by Crane Chen under the supervision of Misha Kazhdan.
 
