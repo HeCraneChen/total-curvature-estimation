@@ -1,0 +1,1 @@
+Interpretation of the results: For triangle meshes, the values are associated to vertices. For point clouds, the values are associated to sampled points.
