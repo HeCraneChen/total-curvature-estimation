@@ -20,6 +20,10 @@ The code was developed on MacOS 12.6.
 
 ## Compile
 
+Fetch the code with dependencies:
+
+    git clone https://github.com/HeCraneChen/total-curvature-estimation.git --recursive
+
 Compile this project using the standard cmake routine:
 
     mkdir build
