@@ -15,14 +15,12 @@
 #include <algorithm>
 #include <utility>
 
-#include <igl/opengl/glfw/Viewer.h>
 #include <igl/copyleft/cgal/delaunay_triangulation.h>
 #include <igl/per_vertex_normals.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/cotmatrix.h>
 #include <igl/grad.h>
 #include <igl/doublearea.h>
-#include <igl/principal_curvature.h>
 #include <igl/knn.h>
 #include <igl/octree.h>
 
@@ -146,13 +144,19 @@ void TotalCurvaturePointCloud(const Eigen::MatrixXd& V, const Eigen::MatrixXd& N
   Eigen::MatrixXi I;
 
   // build octree
+  std::cout<<"data sanity check..."<<std::endl;
   bool sanity_check = HasDuplicateVertices(V);
+  std::cout<<"data passed sanity check!"<<std::endl;
+  std::cout<<"building octree..."<<std::endl;
   igl::octree(V,O_PI,O_CH,O_CN,O_W);
+  std::cout<<"successfully built octree!"<<std::endl;
 
   // KNN
+  std::cout<<"calculating knn..."<<std::endl;
   igl::knn(V,K,O_PI,O_CH,O_CN,O_W,I);
 
   // Curvature Estimation
+  std::cout<<"calculating total curvature..."<<std::endl;
   #pragma omp parallel for
   for (int i =0; i<V.rows(); i++){
     std::vector<int> idx_vec;

@@ -23,7 +23,7 @@
 
 void VisTriangleMesh(Eigen::VectorXd k_S, Eigen::MatrixXd V, Eigen::MatrixXi F){
   Eigen::VectorXd k_S_vis(V.rows());
-  k_S_vis = k_S.array().pow(0.0625);
+  k_S_vis = k_S.array().pow(0.0425);
   auto psMesh = polyscope::registerSurfaceMesh("my mesh Laplacian", V, F);
   auto TotalCurvature = polyscope::getSurfaceMesh("my mesh Laplacian");
   auto ScalarQuantity1 = TotalCurvature->addVertexScalarQuantity("TotalCurvature", k_S_vis);

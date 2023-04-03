@@ -15,17 +15,11 @@
 #include <algorithm>
 #include <utility>
 
-#include <igl/opengl/glfw/Viewer.h>
-#include <igl/copyleft/cgal/delaunay_triangulation.h>
 #include <igl/per_vertex_normals.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/cotmatrix.h>
 #include <igl/grad.h>
 #include <igl/doublearea.h>
-#include <igl/principal_curvature.h>
-#include <igl/knn.h>
-#include <igl/octree.h>
-
 
 
 double PerTriangleLaplacianCurvatureFast(int row_id, const Eigen::MatrixXd& V, const Eigen::MatrixXd& N, const Eigen::MatrixXi& F, const Eigen::MatrixXd& A)
@@ -56,14 +50,13 @@ double PerTriangleLaplacianCurvatureFast(int row_id, const Eigen::MatrixXd& V, c
 
 
 
-void TotalCurvatureMesh(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F, Eigen::VectorXd& k_S)
+void TotalCurvatureMesh(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F, const Eigen::MatrixXd& N, Eigen::VectorXd& k_S)
 {
   using namespace Eigen;
   using namespace std;
 
   Eigen::SparseMatrix<double> G;
-  Eigen::MatrixXd N, A;
-  igl::per_vertex_normals(V,F,N);
+  Eigen::MatrixXd A;
   igl::doublearea(V, F, A);
   igl::grad(V, F, G);
   int V_num = V.rows();

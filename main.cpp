@@ -15,14 +15,12 @@
 #include <algorithm>
 #include <utility>
 
-#include <igl/opengl/glfw/Viewer.h>
 #include <igl/copyleft/cgal/delaunay_triangulation.h>
 #include <igl/per_vertex_normals.h>
 #include <igl/read_triangle_mesh.h>
 #include <igl/cotmatrix.h>
 #include <igl/grad.h>
 #include <igl/doublearea.h>
-#include <igl/principal_curvature.h>
 #include <igl/knn.h>
 #include <igl/octree.h>
 
@@ -38,9 +36,37 @@ int main(int argc, char *argv[])
 {
   using namespace Eigen;
   using namespace std;
-  using namespace std::chrono;
-  Eigen::MatrixXd V;
-  Eigen::MatrixXi F;
+
+  // Parse command line inputs
+  std::string input_file;
+  std::string output_file;
+  std::string format;
+  const char* yellowColor = "\033[33m";
+  const char* resetColor = "\033[0m";
+
+  for (int i = 1; i < argc; i++) {
+      std::string arg(argv[i]);
+      if (arg == "--in" && i + 1 < argc) {
+          input_file = argv[++i];
+      } else if (arg == "--out" && i + 1 < argc) {
+          output_file = argv[++i];
+      } else if (arg == "--format" && i + 1 < argc) {
+          format = argv[++i];
+          if (format != "mesh" && format != "point_cloud") {
+              std::cerr << yellowColor << "Invalid format. Allowed formats: mesh, point_cloud"<< resetColor << std::endl;
+              return 1;
+          }
+      } else {
+          std::cerr << yellowColor << "Invalid argument: " << arg << resetColor << std::endl;
+          return 1;
+      }
+  }
+
+  if (input_file.empty() || output_file.empty() || format.empty()) {
+        std::cerr << yellowColor << "Usage: " << argv[0] << " --in input.ply --out output.txt --format [mesh|point_cloud]" << resetColor << std::endl;
+        return 1;
+  }
+
 
   // Initialize polyscope
   polyscope::options::autocenterStructures = true;
@@ -50,20 +76,34 @@ int main(int argc, char *argv[])
   polyscope::options::groundPlaneMode = polyscope::GroundPlaneMode::ShadowOnly;
 
   // Read the mesh
-  igl::read_triangle_mesh("../example_data/cow.ply", V, F);
-  // igl::read_triangle_mesh("../example_data/torus_res36.ply", V, F);
+  Eigen::MatrixXd V, N;
+  Eigen::MatrixXi F;
+  igl::read_triangle_mesh(input_file, V, F); 
+  igl::per_vertex_normals(V,F,N);
   Eigen::VectorXd k_S(V.rows());
   
-  // //////////////// Calculate the curvature of mesh
-  // TotalCurvatureMesh(V, F, k_S);
-  // VisTriangleMesh(k_S, V, F);
+  // Calculate the total curvature
+  if (format == "mesh"){
+    TotalCurvatureMesh(V, F, N, k_S);
+    VisTriangleMesh(k_S, V, F);
+  }
+  if (format == "point_cloud"){
+    TotalCurvaturePointCloud(V, N, k_S, 20);
+    VisPointCloud(k_S, V);
+  }
+  std::cout<<"finished calculating total curvature..."<<std::endl;
 
-  // // //////////////// Calculate the curvature of point cloud
-  Eigen::MatrixXd N;
-  igl::per_vertex_normals(V,F,N);
-  TotalCurvaturePointCloud(V, N, k_S, 20);
-  VisPointCloud(k_S, V);
-
+  // Save the result to txt file
+  std::cout<<"writing results to txt file..."<<std::endl;
+  std::ofstream ofs(output_file);
+  if (!ofs.is_open()) {
+      std::cerr << "Could not open the file for writing." << std::endl;
+      return false;
+  }
+  ofs << k_S;
+  ofs.close();
+  std::cout<<"results saved to txt file."<<std::endl;
+  
   // Show the gui
   polyscope::show();
   return 0;
