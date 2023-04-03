@@ -1,3 +1,7 @@
 [submodule "libigl"]
 	path = libigl
 	url = https://github.com/libigl/libigl.git
+[submodule "polyscope"]
+	path = polyscope
+	url = https://github.com/nmwsharp/polyscope.git
+	branch = master
