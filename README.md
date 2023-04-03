@@ -29,7 +29,7 @@ via `cmake-gui` or `ccmake`.
 
 ## OS
 
-The code is developed on MacOS 12.6.
+The code was developed on MacOS 12.6.
 
 ## Compile
 
