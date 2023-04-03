@@ -12,7 +12,7 @@ A universal total curvature estimation method that works for both triangle meshe
 - [eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) for matrix data structures
 - [openmp](http://polyscope.run/) for parallelization
 - [libigl](http://libigl.github.io/libigl/) for mesh data structures and geometry processing tools
-- [Polyscope](http://polyscope.run/) for 3D visualizations and rendering
+- [polyscope](http://polyscope.run/) for 3D visualizations and rendering
 
 ## OS
 
