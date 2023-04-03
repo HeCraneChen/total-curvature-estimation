@@ -3,7 +3,7 @@
 	url = https://github.com/nmwsharp/polyscope.git
 [submodule "polyscope"]
 	path = polyscope
-	url = https://github.com/HeCraneChen/polyscope.git
+	url = https://github.com/nmwsharp/polyscope.git
 [submodule "libigl"]
 	path = libigl
 	url = https://github.com/libigl/libigl.git
