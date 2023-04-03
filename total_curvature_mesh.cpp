@@ -76,7 +76,7 @@ void TotalCurvatureMesh(const Eigen::MatrixXd& V, const Eigen::MatrixXi& F, cons
     int N_adjacent_faces = 0;
     for (SparseMatrix<double>::InnerIterator it(G,i); it; ++it){
       if (it.row() < F.rows()){ 
-        total_area += A(it.row());
+        total_area += 0.5 * A(it.row());
         k_S_entry += k_S_face(it.row()); 
       }
     }

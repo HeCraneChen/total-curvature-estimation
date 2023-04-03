@@ -144,9 +144,9 @@ void TotalCurvaturePointCloud(const Eigen::MatrixXd& V, const Eigen::MatrixXd& N
   Eigen::MatrixXi I;
 
   // build octree
-  std::cout<<"data sanity check..."<<std::endl;
-  bool sanity_check = HasDuplicateVertices(V);
-  std::cout<<"data passed sanity check!"<<std::endl;
+  // std::cout<<"data sanity check..."<<std::endl;
+  // bool sanity_check = HasDuplicateVertices(V);
+  // std::cout<<"data passed sanity check!"<<std::endl;
   std::cout<<"building octree..."<<std::endl;
   igl::octree(V,O_PI,O_CH,O_CN,O_W);
   std::cout<<"successfully built octree!"<<std::endl;
