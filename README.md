@@ -51,4 +51,6 @@ From within the `build` directory just issue:
 
 A glfw app should launch displaying the point cloud of a cow, rendered with color representing total curvature of each point.
 
+## Citation
 
+(to be updated)
