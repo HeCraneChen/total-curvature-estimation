@@ -17,6 +17,7 @@ A universal total curvature estimation method that works for both triangle meshe
 ## OS
 
 The code was developed on MacOS 12.6.
+We verified the compilation and running of the code on Ubuntu 18.04.
 
 ## Compile
 
