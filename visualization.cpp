@@ -36,5 +36,6 @@ void VisPointCloud(Eigen::VectorXd k_S, Eigen::MatrixXd V){
   k_S_vis = k_S.array().pow(0.0625);
   auto psCloud = polyscope::registerPointCloud("my pcd", V);
   auto TotalCurvature = polyscope::getPointCloud("my pcd")->addScalarQuantity("TotalCurvature", k_S_vis);
+  TotalCurvature->setEnabled(true); 
   TotalCurvature->setColorMap("jet");  
 }
