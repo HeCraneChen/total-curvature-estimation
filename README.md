@@ -49,4 +49,4 @@ A glfw app should launch displaying a cow, rendered with color representing tota
 
 ## Citation
 
-(to be updated)
+(coming soon)
