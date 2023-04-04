@@ -36,9 +36,12 @@ This should find and build the dependencies and create a `example_bin` binary.
 
 ## Run
 
-From within the `build` directory just issue:
+From within the `build` directory, for triangle mesh, just issue:
 
     ./TotalCurvature --in ../example_data/cow.ply --out ../results/cow_mesh.txt --format mesh
+    
+For point cloud, just issue:
+
     ./TotalCurvature --in ../example_data/cow.ply --out ../results/cow_cloud.txt --format point_cloud
 
 A glfw app should launch displaying a cow, rendered with color representing total curvature of each point. Results of the calculated curvature will be saved in a txt file. Note that the values in the visualizer has been rescaled for better visual effect. Refer to the output txt file for the calculated total curvature values.
