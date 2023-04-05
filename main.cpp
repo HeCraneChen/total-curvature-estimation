@@ -23,6 +23,7 @@
 #include <igl/doublearea.h>
 #include <igl/knn.h>
 #include <igl/octree.h>
+#include <igl/total_curvature.h>
 
 #include "polyscope/polyscope.h"
 #include "polyscope/point_cloud.h"
@@ -38,7 +39,7 @@ int main(int argc, char *argv[])
   using namespace std;
 
   // Parse command line inputs
-  std::string input_file;
+  vector<string> input_files;
   std::string output_file;
   std::string format;
   const char* yellowColor = "\033[33m";
@@ -46,8 +47,13 @@ int main(int argc, char *argv[])
 
   for (int i = 1; i < argc; i++) {
       std::string arg(argv[i]);
-      if (arg == "--in" && i + 1 < argc) {
-          input_file = argv[++i];
+      if (arg == "--in") {
+            i++;
+            while (i < argc && string(argv[i]).substr(0, 2) != "--") {
+                input_files.push_back(argv[i]);
+                i++;
+            }
+            i--; // Move the index back one step to process next flag correctly
       } else if (arg == "--out" && i + 1 < argc) {
           output_file = argv[++i];
       } else if (arg == "--format" && i + 1 < argc) {
@@ -62,7 +68,7 @@ int main(int argc, char *argv[])
       }
   }
 
-  if (input_file.empty() || output_file.empty() || format.empty()) {
+  if (input_files.empty() || output_file.empty() || format.empty()) {
         std::cerr << yellowColor << "Usage: " << argv[0] << " --in input.ply --out output.txt --format [mesh|point_cloud]" << resetColor << std::endl;
         return 1;
   }
@@ -78,16 +84,22 @@ int main(int argc, char *argv[])
   // Read the mesh
   Eigen::MatrixXd V, N;
   Eigen::MatrixXi F;
-  igl::read_triangle_mesh(input_file, V, F); 
-  igl::per_vertex_normals(V,F,N);
-  Eigen::VectorXd k_S(V.rows());
+  Eigen::VectorXd k_S;
   
   // Calculate the total curvature
   if (format == "mesh"){
+    igl::read_triangle_mesh(input_files[0], V, F); 
+    igl::per_vertex_normals(V,F,N);
+    k_S.resize(V.rows()); 
+    
     TotalCurvatureMesh(V, F, N, k_S);
     VisTriangleMesh(k_S, V, F);
   }
   if (format == "point_cloud"){
+    igl::read_triangle_mesh(input_files[0], V, F); 
+    igl::read_triangle_mesh(input_files[1], N, F); 
+    k_S.resize(V.rows()); 
+
     TotalCurvaturePointCloud(V, N, k_S, 20);
     VisPointCloud(k_S, V);
   }
