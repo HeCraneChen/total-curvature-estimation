@@ -43,7 +43,7 @@ From within the `build` directory, for triangle mesh, just issue:
     
 For point cloud, just issue:
 
-    ./TotalCurvature --in ../example_data/cow_points.ply cow_normals.ply --out ../results/cow_cloud.txt --format point_cloud
+    ./TotalCurvature --in ../example_data/cow_points.ply;../example_data/cow_normals.ply --out ../results/cow_cloud.txt --format point_cloud
 
 A glfw app should launch displaying a cow, rendered with color representing total curvature of each point. Results of the calculated curvature will be saved in a txt file. Note that the values in the visualizer has been rescaled for better visual effect. Refer to the output txt file for the calculated total curvature values.
 
