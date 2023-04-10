@@ -23,7 +23,6 @@
 #include <igl/doublearea.h>
 #include <igl/knn.h>
 #include <igl/octree.h>
-#include <igl/total_curvature.h>
 
 #include "polyscope/polyscope.h"
 #include "polyscope/point_cloud.h"
@@ -110,7 +109,7 @@ int main(int argc, char *argv[])
   std::ofstream ofs(output_file);
   if (!ofs.is_open()) {
       std::cerr << "Could not open the file for writing." << std::endl;
-      return false;
+      return 0;
   }
   ofs << k_S;
   ofs.close();

@@ -51,7 +51,7 @@ Eigen::MatrixXi Delaunay_KNN(Eigen::MatrixXd knn_locations_including_self, Eigen
     mean_A_vec = knn_locations_including_self.transpose().rowwise().mean();
     A = knn_locations_including_self.transpose().colwise() - mean_A_vec; // 3, 20 
     Eigen::JacobiSVD<Eigen::MatrixXd> svd(A, Eigen::ComputeFullU | Eigen::ComputeFullV);
-    n = svd.matrixU()(Eigen::placeholders::all, svd.matrixU().cols()-1);
+    n = svd.matrixU()(Eigen::all, svd.matrixU().cols()-1);
     n_plane = {n(0), n(1), n(2)};
     r0 = {knn_locations_including_self(0,0), knn_locations_including_self(0,1), knn_locations_including_self(0,2)};
     x_axis = {1, 0, 0};
@@ -66,12 +66,12 @@ Eigen::MatrixXi Delaunay_KNN(Eigen::MatrixXd knn_locations_including_self, Eigen
     knn_locations_2d << t1, t2; // 20, 2
     igl::copyleft::cgal::delaunay_triangulation(knn_locations_2d, all_triangles);
     std::vector<int> adjacent_triangles_mask = where(0, all_triangles);
-    adjacent_triangles_idx_local =  all_triangles(adjacent_triangles_mask, Eigen::placeholders::all); // 5, 3
+    adjacent_triangles_idx_local =  all_triangles(adjacent_triangles_mask, Eigen::all); // 5, 3
 
     // Converting indices back to original global indices
-    Eigen::MatrixXi adjacent_triangles_idx_x = idx(Eigen::placeholders::all,adjacent_triangles_idx_local(Eigen::placeholders::all,0));
-    Eigen::MatrixXi adjacent_triangles_idx_y = idx(Eigen::placeholders::all,adjacent_triangles_idx_local(Eigen::placeholders::all,1));
-    Eigen::MatrixXi adjacent_triangles_idx_z = idx(Eigen::placeholders::all,adjacent_triangles_idx_local(Eigen::placeholders::all,2));
+    Eigen::MatrixXi adjacent_triangles_idx_x = idx(Eigen::all,adjacent_triangles_idx_local(Eigen::all,0));
+    Eigen::MatrixXi adjacent_triangles_idx_y = idx(Eigen::all,adjacent_triangles_idx_local(Eigen::all,1));
+    Eigen::MatrixXi adjacent_triangles_idx_z = idx(Eigen::all,adjacent_triangles_idx_local(Eigen::all,2));
     Eigen::MatrixXi adjacent_triangles_idx_tmp(3, adjacent_triangles_idx_x.cols());
     adjacent_triangles_idx_tmp << adjacent_triangles_idx_x, adjacent_triangles_idx_y, adjacent_triangles_idx_z;
     adjacent_triangles_idx = adjacent_triangles_idx_tmp.transpose();
@@ -88,20 +88,20 @@ double PerTriangleLaplacianTriangleFanCurvature(Eigen::MatrixXi adjacent_triangl
     double total_curvature = 0.0, total_area = 0.0;
     int N_triangles = adjacent_triangles_idx.rows();
     for (int i = 0; i < N_triangles; i++){    
-      adjacent_triangle_idx = adjacent_triangles_idx(i,Eigen::placeholders::all);
+      adjacent_triangle_idx = adjacent_triangles_idx(i,Eigen::all);
       std::vector<int> triangle_verts = {adjacent_triangle_idx(0,0), adjacent_triangle_idx(0,1), adjacent_triangle_idx(0,2)};
-      triangle = V(triangle_verts, Eigen::placeholders::all); //3, 3
-      n_triangle_face = N(triangle_verts, Eigen::placeholders::all); // 3, 3
-      Eigen::MatrixXd AB_mat = triangle(0, Eigen::placeholders::all) - triangle(1, Eigen::placeholders::all);
-      Eigen::MatrixXd AC_mat = triangle(0, Eigen::placeholders::all) - triangle(2, Eigen::placeholders::all);
+      triangle = V(triangle_verts, Eigen::all); //3, 3
+      n_triangle_face = N(triangle_verts, Eigen::all); // 3, 3
+      Eigen::MatrixXd AB_mat = triangle(0, Eigen::all) - triangle(1, Eigen::all);
+      Eigen::MatrixXd AC_mat = triangle(0, Eigen::all) - triangle(2, Eigen::all);
       Eigen::Vector3d AB(AB_mat.coeff(0, 0), AB_mat.coeff(0, 1), AB_mat.coeff(0, 2));
       Eigen::Vector3d AC(AC_mat.coeff(0, 0), AC_mat.coeff(0, 1), AC_mat.coeff(0, 2));
       double triangle_area = 0.5 * sqrt((AB.cross(AC)).squaredNorm());
       f << 0 , 1 , 2;
       igl::cotmatrix(triangle, f, l);
-      x = n_triangle_face(Eigen::placeholders::all,0);
-      y = n_triangle_face(Eigen::placeholders::all,1);
-      z = n_triangle_face(Eigen::placeholders::all,2);
+      x = n_triangle_face(Eigen::all,0);
+      y = n_triangle_face(Eigen::all,1);
+      z = n_triangle_face(Eigen::all,2);
       cx = (x.transpose() * l * x)(0);
       cy = (y.transpose() * l * y)(0);
       cz = (z.transpose() * l * z)(0); 
@@ -161,11 +161,11 @@ void TotalCurvaturePointCloud(const Eigen::MatrixXd& V, const Eigen::MatrixXd& N
   for (int i =0; i<V.rows(); i++){
     std::vector<int> idx_vec;
     Eigen::MatrixXi idx;
-    idx = I(i,Eigen::placeholders::all);
+    idx = I(i,Eigen::all);
     for (int j = 0; j<K; j++){
       idx_vec.push_back(idx(j));
     }
-    Eigen::MatrixXd knn_locations_including_self = V(idx_vec,Eigen::placeholders::all);
+    Eigen::MatrixXd knn_locations_including_self = V(idx_vec,Eigen::all);
     Eigen::MatrixXi adjacent_triangles_idx = Delaunay_KNN(knn_locations_including_self, idx);
     k_S(i) = PerTriangleLaplacianTriangleFanCurvature(adjacent_triangles_idx, V, N);
   }
