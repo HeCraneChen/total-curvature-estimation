@@ -9,3 +9,13 @@ FetchContent_Declare(
     GIT_TAG v2.4.0
 )
 FetchContent_MakeAvailable(libigl)
+
+# Fetch Eigen if not found
+if(NOT TARGET Eigen3::Eigen)
+    FetchContent_Declare(
+        eigen
+        GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+        GIT_TAG 3.4.0
+    )
+    FetchContent_MakeAvailable(eigen)
+endif()

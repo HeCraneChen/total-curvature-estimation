@@ -3,13 +3,14 @@ project(TotalCurvature)
 
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+# Eigen
+find_package(Eigen3 REQUIRED)
+
 # Libigl
 include(libigl)
 
 # Enable the targets
 igl_include(core)
-igl_include(predicates)
-igl_include(restricted triangle)
 igl_include(copyleft cgal)
 
 # polyscope
@@ -21,4 +22,4 @@ find_package(OpenMP REQUIRED)
 # Add your project files
 file(GLOB SRC_FILES main.cpp)
 add_executable(TotalCurvature ${SRC_FILES})
-target_link_libraries(TotalCurvature PUBLIC igl_restricted::triangle igl_copyleft::cgal polyscope PRIVATE OpenMP::OpenMP_CXX)
+target_link_libraries(TotalCurvature PUBLIC igl_copyleft::cgal polyscope PRIVATE OpenMP::OpenMP_CXX)

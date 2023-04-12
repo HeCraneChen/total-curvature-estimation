@@ -5,6 +5,7 @@
 // obtain one at http://mozilla.org/MPL/2.0/.
 
 #include <Eigen/Dense>
+#include <Eigen/Core>
 #include <cmath>
 #include <iostream>
 #include <omp.h>
@@ -28,18 +29,18 @@ double PerTriangleLaplacianCurvatureFast(int row_id, const Eigen::MatrixXd& V, c
     Eigen::MatrixXi f(1, 3), adjacent_faces, adjacent_face;
     Eigen::SparseMatrix<double> l;
     double total_curvature_one_triangle, cx, cy, cz, face_area;
-    face_area = *A(row_id, Eigen::placeholders::all).data();
+    face_area = *A(row_id, Eigen::indexing::all).data();
     face_area = face_area / 2;
 
-    adjacent_face = F(row_id, Eigen::placeholders::all);
-    v_adjacent_face = V({adjacent_face(0), adjacent_face(1), adjacent_face(2)}, Eigen::placeholders::all);
-    n_adjacent_face = N({adjacent_face(0), adjacent_face(1), adjacent_face(2)}, Eigen::placeholders::all);
+    adjacent_face = F(row_id, Eigen::indexing::all);
+    v_adjacent_face = V({adjacent_face(0), adjacent_face(1), adjacent_face(2)}, Eigen::indexing::all);
+    n_adjacent_face = N({adjacent_face(0), adjacent_face(1), adjacent_face(2)}, Eigen::indexing::all);
     
     f << 0 , 1 , 2;
     igl::cotmatrix(v_adjacent_face, f, l);
-    x = n_adjacent_face(Eigen::placeholders::all,0);
-    y = n_adjacent_face(Eigen::placeholders::all,1);
-    z = n_adjacent_face(Eigen::placeholders::all,2);
+    x = n_adjacent_face(Eigen::indexing::all,0);
+    y = n_adjacent_face(Eigen::indexing::all,1);
+    z = n_adjacent_face(Eigen::indexing::all,2);
     cx = (x.transpose() * l * x)(0);
     cy = (y.transpose() * l * y)(0);
     cz = (z.transpose() * l * z)(0);
