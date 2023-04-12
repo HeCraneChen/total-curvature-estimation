@@ -35,7 +35,7 @@ Compile this project using the standard cmake routine:
 
 The above command is using FetchContent of CMake to automatically download libigl and its dependencies. If that did not work for you, try to point to the local libigl. In that case, use:
 
-cmake -DFETCHCONTENT_SOURCE_DIR_LIBIGL=../libigl ..
+    cmake -DFETCHCONTENT_SOURCE_DIR_LIBIGL=../libigl ..
 
 ## Run
 
