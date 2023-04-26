@@ -56,6 +56,16 @@ A glfw app should launch displaying a cow, rendered with color representing tota
 
 ## Compile and Run on Windows with Visual Studio
 
+Compile
+
+Open a local folder 
+
+File -> Open -> CMake... and open the CMakeLists.txt
+
+Build -> Build All
+
+Run
+
     cd total-curvature-estimation
     
     mkdir build
