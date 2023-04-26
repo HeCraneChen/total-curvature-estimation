@@ -4,7 +4,14 @@ project(TotalCurvature)
 list(PREPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 # Eigen
-find_package(Eigen3 REQUIRED)
+if(WIN32)
+    # On Windows, include Eigen from the local source directory
+    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/eigen)
+else()
+    # On other operating systems, use find_package
+    find_package(Eigen3 REQUIRED)
+    include_directories(${EIGEN3_INCLUDE_DIR})
+endif()
 
 # Libigl
 include(libigl)
