@@ -56,6 +56,20 @@ A glfw app should launch displaying a cow, rendered with color representing tota
 
 ## Compile and Run on Windows with Visual Studio
 
+    cd total-curvature-estimation
+    
+    mkdir build
+    
+    scp ./out/build/x64-Debug/TotalCurvature.exe ./build/TotalCurvature.exe
+    
+    scp ./out/build/x64-Debug/_deps/gmp-src/lib/libgmp-10.dll ./build/libgmp-10.dll
+    
+    cd build
+    
+    TotalCurvature --in ../example_data/cow.ply --out ../results/cow_mesh.txt --format mesh
+    
+    TotalCurvature --in ../example_data/cow_points.ply ../example_data/cow_normals.ply --out ../results/cow_cloud.txt --format point_cloud
+    
 
 ## Citation
 
