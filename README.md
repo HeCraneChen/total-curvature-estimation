@@ -54,6 +54,9 @@ For point cloud, just issue:
 
 A glfw app should launch displaying a cow, rendered with color representing total curvature of each point. Results of the calculated curvature will be saved in a txt file. Note that the values in the visualizer has been rescaled for better visual effect. Refer to the output txt file for the calculated total curvature values.
 
+## Visual Studio Users on Windows
+
+
 ## Citation
 
 (coming soon)
