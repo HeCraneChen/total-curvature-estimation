@@ -60,7 +60,7 @@ A glfw app should launch displaying a cow, rendered with color representing tota
 
 Open a local folder 
 
-File -> Open -> CMake... and open the CMakeLists.txt
+`File` -> Open -> CMake... and open the CMakeLists.txt
 
 Build -> Build All
 
