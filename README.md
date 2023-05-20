@@ -85,17 +85,12 @@ Open the Visual Studio IDE, and click the following
 
 ## Citation
 
+```bibtex
 @incollection{chen2023estimating,
-
   title={Estimating discrete total curvature with per triangle normal variation},
-  
   author={Crane He Chen},
-  
-  booktitle={SIGGRAPH Talks},
-  
-<!--   pages={1--8}, -->
+  booktitle={ACM SIGGRAPH 2023 Talks},
+<!--   pages={1--1}, -->
   year={2023}
-  
 }
-
-<!-- (coming soon) -->
+```
