@@ -90,7 +90,6 @@ Open the Visual Studio IDE, and click the following
   title={Estimating discrete total curvature with per triangle normal variation},
   author={Crane He Chen},
   booktitle={ACM SIGGRAPH 2023 Talks},
-<!--   pages={1--1}, -->
   year={2023}
 }
 ```
