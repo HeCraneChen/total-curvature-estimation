@@ -3,7 +3,7 @@
 A universal total curvature estimation method that works for both triangle meshes and point clouds. For details, see the [SIGGRAPH 2023 paper](https://arxiv.org/abs/2305.12653) by Crane Chen under the supervision of Misha Kazhdan.
 ![mesh_pcd_curvature](https://user-images.githubusercontent.com/33951209/229395487-efa580f7-9e28-498d-9265-af09d75f6d5c.png)
 
-This codebase is in libigl-style. We also implemented another version for open3d users, the codebase can be found [here](https://github.com/HeCraneChen/open3d-discrete-total-curvature.git).
+This codebase is in libigl-style. We also implemented another version for open3d users, the open3d-style codebase of our paper can be found [here](https://github.com/HeCraneChen/open3d-discrete-total-curvature.git).
 
 ## Comparison with other popular libraries
 ![teaser_bright](https://user-images.githubusercontent.com/33951209/229387054-371fa8e9-1ef2-4552-81e3-af6927ee99dc.png)
