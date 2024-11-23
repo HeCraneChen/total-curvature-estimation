@@ -45,6 +45,13 @@ to replace
 
     cmake ..
 
+If you are on a M1/M2/M3 chip Macbook, you are likely to run into issues with the openmp library. This is because the new Macbook put libomp in /opt/homebrew/, but CMake might not look in there. CMake looks at /usr/local/lib/ which does not exist. The fix is run the following:
+
+    sudo mkdir -p /usr/local/lib /usr/local/include
+    sudo ln -s $(brew --prefix libomp)/lib/libomp.dylib /usr/local/lib/libomp.dylib
+    sudo ln -s $(brew --prefix libomp)/include/* /usr/local/include/
+    cmake ..
+
 **Run**
 
 From within the `build` directory, for triangle mesh, just issue:
